@@ -15,28 +15,36 @@ public class QuadraticEquationContinue {
 				//入力させる
 				String line = reader.readLine();
 				//まずは、入力が正しいものか判定
-				if(line == "quit") {
+				if(line.equals("quit")) {
 					System.out.println("またよろしくね！");
 					break;
 				}
 				//ここからが本番
-				else { 
+				else {
 					//まずは入力された文字を配列に格納する。
 					String colum[] = line.split(",");
 					//String型からdouble型への変換
 			        double a = Double.parseDouble(colum[0]);
 			        double b = Double.parseDouble(colum[1]);
 			        double c = Double.parseDouble(colum[2]);
-			        
+			        SolveEquation(a,b,c);
 					}
 			}
 		}
-		catch(IOException e) { 
-			System.out.println(e);  
+		catch(IOException e) {
+			System.out.println(e);
 			}
-		catch(NumberFormatException e) {
-		System.out.println("すみません。数字でないと、理解できません。");
+	}
+	public static void SolveEquation(double a,double b,double c) {
+		if(Math.pow(b,2) - 4*a*c > 0){
+			double x = (b + Math.sqrt(Math.pow(b,2) - 4*a*c)) / 2*a;
+			double y = (b - Math.sqrt(Math.pow(b,2) - 4*a*c)) / 2*a;
+			System.out.println("その二次方程式、" + a +"x^2 + " + b +"x + "+ c +" = 0の解は、x = "+ x +"," + y +" の2つだね。");
+		} else if(Math.pow(b,2) - 4*a*c == 0){
+			double x = (b + Math.sqrt(Math.pow(b,2) - 4*a*c)) / 2*a;
+			System.out.println("その二次方程式、" + a +"x^2 " + b +"x "+ c +"= 0の解は、x="+ x +"の1つだね。");
+		} else {
+			System.out.println("その二次方程式に解はありません。");
 		}
 	}
-
 }
